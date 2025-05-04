@@ -543,6 +543,10 @@ margin-bottom: 10px;
       height: 70px;
       padding: 0px 5px;
      }
+     .logimg{
+      display: none;
+     }
+     
      .navli{
      display: none;
      }
@@ -1656,13 +1660,10 @@ box-shadow:-5px 9px 4px 0px rgba(15, 73, 78, 0.25);
 }
 
 .logform{
-  width:30%;
-  height:60%;
+  margin: 10%;
+  margin-top: -10%;
   display:flex;
   flex-direction: column;
-  /* align-items: center; */
-  
-
 }
 .logimg{
   width:35%;
