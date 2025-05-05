@@ -560,7 +560,7 @@ margin-bottom: 10px;
       .navbar p{
         width: auto;
         height:auto;
-        font-size: 16px;
+        font-size: 19px;
         }
         .logo{  
         font-size: 20px;
@@ -1822,7 +1822,7 @@ margin-top:20px;
   justify-content: space-around;
   padding:10px 20px 10px 20px;
 }
-.username{
+.username1{
   color:#37BAF1;
   font-family: "Inter", serif;  
 font-weight: 600;
@@ -2078,6 +2078,16 @@ margin-top:20px;
 }
 
 @media screen and (max-width:440px){
+   .login{
+    background: linear-gradient(rgb(227, 248, 251), rgba(97, 174, 185, 1));
+}
+form label{
+  background-color: unset;
+}
+  .loginform label{
+    background-color: unset;
+  }
+  
   .caregiverimage{
     height:19%;
     width:10%;
@@ -2103,11 +2113,30 @@ margin-top:20px;
     font-size:12px;
   }
   .obtion{
-    font-size:10px;
+    font-size:14px;
   }
-  .username{
+  .username1{
     font-size:20px;
   }
+  .both{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .profiledetails{
+    width:96%;
+  }
+  .profileimage{
+    margin-top:-10%;
+    margin-bottom:10px;
+  }
+  .otherdetails{
+    width:100%;
+    height:67%;
+  }
+  /* .lang h5 , .ed h5 , .contact h5{
+    border-bottom:2px dotted #37BAF1;
+  } */
 }
 
 

@@ -40,7 +40,7 @@ const CaregiverCard = ({phone,name,experience,image,field,dob,email,education,la
      </div>
      <div className="caredetails">
       <div className = "heart">
-       <span className="username">{name}</span>
+       <span className="username1">{name}</span>
        <div className="likes"><Heart onClick={handleclick} fill={like?"rgba(3, 172, 240, 1)":"rgba(255, 255, 255, 0.3)"}/>
         {amount}
        </div>
