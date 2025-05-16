@@ -3,6 +3,7 @@ import axios, { Axios } from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
+import Tesseract from 'tesseract.js';
 
 export default function Registration() {
   const navigate = useNavigate();
@@ -73,9 +74,44 @@ const validlanguage = /^[a-zA-Z\.\, ]{4,}$/;
         break;
     }
   };
-  // 
+
+const validateAadharOCR = async () => {
+  if (!aadharImage) {
+    toast.error("Please upload Aadhaar image");
+    return false;
+  }
+  try {
+    const { data: { text } } = await Tesseract.recognize(aadharImage, 'eng+hin');
+
+    const extractedText = text.toUpperCase();
+    const uidPattern = /\b\d{4}\s\d{4}\s\d{4}\b/;
+    
+    const isNamePresent = extractedText.includes(name.toUpperCase());
+    const isUIDPresent = uidPattern.test(extractedText);
+    const isNumberPresent = extractedText.includes(number);
+    if (isNamePresent || (isUIDPresent || isNumberPresent)) {
+      toast.success("Aadhaar matched successfully");
+      return true;
+    } else {
+      toast.error(" Aadhaar info does not match with the form");
+      return false;
+    }
+  } catch (error) {
+    console.error("OCR Error:", error);
+    toast.error("❌ Failed to read Aadhaar image");
+    return false;
+  }
+};
+
+
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const isAadharValid = await validateAadharOCR();
+  if (!isAadharValid) return;
     const formData = new FormData();
     formData.append("fullName", name);
     formData.append("dateOfBirth", dateOfBirth);

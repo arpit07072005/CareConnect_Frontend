@@ -6,7 +6,6 @@ export default function Contact() {
     const[name,setName]=useState("")
     const[email,setEmail]=useState("")
     const[message,setMessage]=useState("")
-    const[robot,setRobot]=useState(false)
     // console.log(status)
     const validname = /^[a-zA-Z]+( [a-zA-Z]+){1,}$/;
     const validemail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -20,9 +19,7 @@ export default function Contact() {
     const handlemssg=(e)=>{
         setMessage(e.target.value)
     }
-    const handlerobo=(e)=>{
-       setRobot(e.target.checked)
-    }
+    
     const handlevalidname=()=>{
       if((!validname.test(name)) && name){
         alert("Invalid name ,Enter full name");
@@ -67,10 +64,6 @@ export default function Contact() {
       alert("Enter message");
       return; 
     }
-    if(!robot){
-      alert("Please confirm you are not a robot.");
-      return;
-    }
         emailjs
           .send(
             "service_4r3d0ha", // Replace with your EmailJS Service ID
@@ -99,7 +92,6 @@ export default function Contact() {
           setName("")
           setEmail("")
           setMessage("")
-          setRobot(false)
         }
   return (
     <div className="page6" id="contactus">
