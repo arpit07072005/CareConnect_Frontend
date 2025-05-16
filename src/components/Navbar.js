@@ -43,7 +43,7 @@ export default function Navbar({ master , setmaster}) {
           <a href="#contactus"><li>Contact Us</li></a>
         </ul>
         <div className="idphoto">
-          <div>
+          <div className='nav-img'>
             <img src="./img6.png" alt="/" />
           </div>
           <select className="obtion" onChange={(e) => {
