@@ -26,7 +26,7 @@ export default function Process() {
     setText4(!text4)
   }
   return (
-    <div className="page4">
+    <div className="page4" id='faq'>
       <div className="img">
         <img src="./Frame.png" alt="frame"/>
       </div>

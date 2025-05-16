@@ -42,7 +42,6 @@ export default function Navbar({ master , setmaster}) {
           <a href="#page3"><li>Testimonials</li></a>
           <a href="#contactus"><li>Contact Us</li></a>
         </ul>
-
         <div className="idphoto">
           <div>
             <img src="./img6.png" alt="/" />

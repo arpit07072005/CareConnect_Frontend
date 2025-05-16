@@ -1186,7 +1186,7 @@ padding:10px 10px 10px 30px;
 .page6{
   width:100vw;
   min-height:30vh;
-  background:linear-gradient(to top,rgba(63, 82, 83, 0.97),rgba(189, 223, 231, 1));
+  background:linear-gradient(to top,rgba(63, 82, 83, 1),rgba(10, 108, 115, 1));
   display:flex;
   flex-direction: column;
   /* align-items: center; */
@@ -1194,47 +1194,36 @@ padding:10px 10px 10px 30px;
 }
 .page6 h4{
   font-family: "Poppins", serif;    
-font-size: 44px;
-font-weight: 600;
+font-size: 35px;
+    font-weight: 400;
 display:inline-block;
-text-align: center;
-text-decoration-line: underline;
-
-
+text-align: left;
+}
+.leftContact p{
+  line-height: 1.5;
+  margin-top: 4%;
 }
 .contactimg{
   width:100%;
   min-height:100%;
   display:flex;
-  align-items: center;
   justify-content: space-around;
-
+  color: rgba(255, 255, 255, 1);
+  padding: 0px 10px;
+  padding-top: 2%;
 }
 .contactform{
-  width:55%;
-  min-height:450px;
   display:flex;
   flex-direction:column;
-  /* align-items: center; */
-  padding-left:80px;
-  
-  justify-content: space-around;
 }
 .childimg{
   width:45%;
   height:529px;
-  margin-top:-66px;
 
-}
-.childimg img{
-  width:100%;
-  height:100%;
 }
 .inputfield{
   display:flex;
-  flex-direction:row;
-  justify-content:space-around;
-  align-items: center;
+  flex-direction:column;
 }
 .inputfield1,.inputfield2{
   display:flex;
@@ -1244,17 +1233,16 @@ text-decoration-line: underline;
 font-size: 16px;
 font-weight: 400;
 color:rgba(255, 255, 255, 1);
-min-height:70px;
-width:50%;
 }
 .inputfield1 input,.inputfield2 input{
-width:80%;
-min-height: 35px;
+width:90%;
+min-height: 32px;
 border-radius: 10px;
 font-family: "Poppins", serif;     
 font-size: 16px;
 font-weight: 500;
 border:2px solid black;
+margin-bottom:5% ;
 }
 .contactform p{
   font-family: "Poppins", serif;     
@@ -1286,28 +1274,50 @@ border:2px solid black;
   height:30px;
   border:20px solid black;
 }
+.contactlinks{
+  list-style: none;
+}
+.contactlinks a li {
+  margin-top: 5%;
+  color: rgba(220, 220, 220, 1);
+}
+.leftContact{
+  width: 36%;
+}
 .send{
   font-family: "Poppins", serif;   
 font-size: 18px;
 font-weight: 500;
 color:rgba(0, 0, 0, 1);
-min-height:51px;
-width:30%;
+min-height:40px;
+width:90%;
 border-radius:10px;
+background-color: rgba(43, 138, 158, 1);
+margin-bottom: 4%;
 }
 .mssg{
-width:85%;
-height: 80px;
+width:90%;
+height: 60px;
 border-radius: 10px ;
 font-family: "Poppins", serif;     
 font-size: 16px;
 font-weight: 500;
 border:2px solid black;
+margin-bottom: 2%;
 }
 @media screen and (max-width:810px){
 .contactform{
   padding-left:30px;
 }
+}
+@media screen and (max-width:768px){
+.leftContact{
+  display: none;
+}
+.contactlinks{
+  margin-left: 5%;
+}
+
 }
 @media screen and (max-width:650px){
  .childimg{
@@ -1324,11 +1334,18 @@ border:2px solid black;
 .contactform{
   width:100%;
 }
-.page6 h4{
+.leftContact h4{
   font-size:33px;
+      
+}
+.page6 h4{
+  font-family: "Poppins", serif;    
+font-size: 27px;
+    font-weight: 400;
+display:inline-block;
+text-align: left;
 }
 .inputfield1 input, .inputfield2 input{
-  width:85%;
   padding-left:10px;
 }
 .mssg{
