@@ -560,7 +560,7 @@ margin-bottom: 10px;
       .navbar p{
         width: auto;
         height:auto;
-        font-size: 16px;
+        font-size: 19px;
         }
         .logo{  
         font-size: 20px;
@@ -1788,9 +1788,9 @@ text-align:center;
 
 .choosecaregivers{
    width:100vw;
-   height:200vh;
+   height:800vh;
    max-height:auto;
-   background:linear-gradient(#FFFFFFE5,#61AEB9);
+   background:linear-gradient(rgb(227, 248, 251),#61AEB9);
    display:flex;
    flex-direction: column;
    align-items: center;
@@ -1839,9 +1839,10 @@ margin-top:20px;
   justify-content: space-around;
   padding:10px 20px 10px 20px;
 }
-.username{
+.username1{
+  color:#37BAF1;
   font-family: "Inter", serif;  
-font-weight: 400;
+font-weight: 600;
 font-size: 24px;
 text-align: left;
 }
@@ -1917,6 +1918,7 @@ font-size: 16px;
 .caregiverbutc{
   width:110px;
   height:35px;
+  border-radius:12px;
   color:rgba(3, 172, 240, 1);
   border:2px solid rgba(3, 172, 240, 1);
   margin-right:40px;
@@ -1924,6 +1926,7 @@ font-size: 16px;
 .caregiverbut{
   width:110px;
   height:35px;
+  border-radius:12px;
   color:rgba(3, 172, 240, 1);
   border:2px solid rgba(3, 172, 240, 1);
  
@@ -2071,7 +2074,87 @@ margin-top:20px;
 
 }
 
+/* //fetch caregiver responsive */
 
+@media screen and (max-width:770px){
+ .caregiverimage{
+  height:30%;
+}
+.aboutcaregiver{
+  font-size:15px;
+}
+.expertise{
+  font-size:14px;
+}
+.dob{
+  display:none;
+}
+.allthreedetails{
+  justify-content: space-around;
+}
+}
+
+@media screen and (max-width:440px){
+   .login{
+    background: linear-gradient(rgb(227, 248, 251), rgba(97, 174, 185, 1));
+}
+form label{
+  background-color: unset;
+}
+  .loginform label{
+    background-color: unset;
+  }
+  
+  .caregiverimage{
+    height:19%;
+    width:10%;
+  }
+  .caregiverimage img{
+    border:2px solid grey;
+  }
+  .choosehead{
+    font-size:27px;
+  }
+  .caregiverbutc{
+    margin-right:5px;
+    width:74px;
+    height:30px;
+    font-size:10px;
+  }
+  .caregiverbut{
+    font-size:10px;
+    width:74px;
+    height:30px;
+  }
+  .aboutcaregiver , .expertise{
+    font-size:12px;
+  }
+  .obtion{
+    font-size:14px;
+  }
+  .username1{
+    font-size:20px;
+  }
+  .both{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .profiledetails{
+    width:96%;
+  }
+  .profileimage{
+    margin-top:-10%;
+    margin-bottom:10px;
+  }
+  .otherdetails{
+    width:100%;
+    height:67%;
+  }
+  /* .lang h5 , .ed h5 , .contact h5{
+    border-bottom:2px dotted #37BAF1;
+  } */
+}
 
 
 

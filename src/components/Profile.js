@@ -128,7 +128,7 @@ const Profile = ({pass}) => {
       <div className="profiledetails">
         <div className="previous">
         <div className = "heart">
-              <span className="username">{name}</span>
+              <span className="username1">{name}</span>
               <div className="likes"><Heart onClick={handleclick} fill={like?"rgba(3, 172, 240, 1)":"rgba(255, 255, 255, 0.3)"}/>
                {amount}
               </div>
@@ -160,7 +160,7 @@ const Profile = ({pass}) => {
         </div>
         <div className="otherdetails">
             <div className="lang">
-                <h5>Language Spoken</h5>
+                <h5>Language</h5>
               <ul className="lang">
                  {language && language.map((l)=>{
                     return(

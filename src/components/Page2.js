@@ -1,5 +1,4 @@
 import axios from 'axios';
-import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 export default function Page2({master,handlecaregiver}) {
@@ -19,7 +18,7 @@ export default function Page2({master,handlecaregiver}) {
   return (
     <div className="page2" >
     <div className="caregiver" id="page2">
-      <span className="head">Became a Caregiver</span>
+      <span className="head">Become a Caregiver</span>
       <p>Join our platform and make a difference in someoen's life.</p>
       <ul className="caregiverli">
         <li>Comprehensive Credential Collection</li>
