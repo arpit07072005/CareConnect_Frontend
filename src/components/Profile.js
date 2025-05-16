@@ -75,7 +75,7 @@ const Profile = ({pass}) => {
    }
    let paymentres = {
     order_id:orderId,
-    amount:1,
+    amount:100,
     currency:"INR",
     payment_capture:1,
   }
