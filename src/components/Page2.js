@@ -7,7 +7,7 @@ export default function Page2({master,handlecaregiver}) {
   const fetchcaregiver = async()=>{
       try{
           const response = await axios.get(`https://semicolon-backend-p6v3.onrender.com/api/v1/caregiver/fetch`);
-          // console.log(response.data);
+     // console.log(response.data);
          
           handlecaregiver(response);
           navigate("/Caregivers")

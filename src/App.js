@@ -6,15 +6,14 @@ import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Registration from './components/Registration';
-// import Page2 from './components/Page2';
-// import Page3 from './components/Page3';
 import Fullpage from './components/Fullpage';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import { useEffect, useState } from 'react';
 import Caregivers from './components/Caregivers';
 import Profile from './components/Profile';
-
+import VoiceChatbot from './components/VoiceChatbot';
+import Contact from './components/Contact';
 
 
 function App() {
@@ -81,11 +80,13 @@ useEffect(() => {
       
       <Routes>
       <Route path="/" element={<Fullpage master={master} handlecaregiver={handlecaregiver} />} />
+       <Route path="/voicechat" element={<VoiceChatbot />} />
       <Route path="/Registration" element={<Registration/>} />
       <Route path="/Login" element={<Login handlemaster ={handlemaster}/>} />
       <Route path="/signup" element={<Signup />}/>
       <Route path="/Caregivers" element={<Caregivers caregiver={caregiver} passprops={passprops} />}/>
       <Route path="/profile" element={<Profile  pass={pass}/>}/>
+    <Route path="/" element={<Signup/>}/>
        </Routes>
        </Router>
        <ToastContainer position="top-center"  autoClose={2000} />
