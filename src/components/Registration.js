@@ -98,7 +98,7 @@ const validateAadharOCR = async () => {
     }
   } catch (error) {
     console.error("OCR Error:", error);
-    toast.error("❌ Failed to read Aadhaar image");
+    toast.error(" Failed to read Aadhaar image");
     return false;
   }
 };
