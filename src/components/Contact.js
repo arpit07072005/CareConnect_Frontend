@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import emailjs from "emailjs-com"
-
+import { Link, useNavigate } from 'react-router-dom'; 
 export default function Contact() {
     const [status, setStatus] = useState("");
     const[name,setName]=useState("")
     const[email,setEmail]=useState("")
     const[message,setMessage]=useState("")
-    const[robot,setRobot]=useState(false)
     // console.log(status)
     const validname = /^[a-zA-Z]+( [a-zA-Z]+){1,}$/;
     const validemail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -20,9 +19,7 @@ export default function Contact() {
     const handlemssg=(e)=>{
         setMessage(e.target.value)
     }
-    const handlerobo=(e)=>{
-       setRobot(e.target.checked)
-    }
+    
     const handlevalidname=()=>{
       if((!validname.test(name)) && name){
         alert("Invalid name ,Enter full name");
@@ -67,10 +64,6 @@ export default function Contact() {
       alert("Enter message");
       return; 
     }
-    if(!robot){
-      alert("Please confirm you are not a robot.");
-      return;
-    }
         emailjs
           .send(
             "service_4r3d0ha", // Replace with your EmailJS Service ID
@@ -99,33 +92,44 @@ export default function Contact() {
           setName("")
           setEmail("")
           setMessage("")
-          setRobot(false)
         }
   return (
     <div className="page6" id="contactus">
-      <h4>CONTACT US</h4>
       <div className="contactimg" >
-        <div className="contactform">
-            <p>If you have any queries, drop them here</p>
+        <div className="leftContact">
+      <h4>Care<span className="logo">Connect</span></h4>
+          <p>We provide compassionate, reliable and prffessional caregivers to support families
+and individuals in need.
+</p>
+<p>Location:  Random,
+sector23213123</p>
+<p>+91 1214875324,
++91 734678642
+</p>
+        </div>
+        <div className="contactlinks">
+          <h4>Quick Links</h4>
+          <a href="#page1"><li>Home</li></a>
+             <a href="#page2service"><li>Services</li></a>
+          <a href="#page3"><li>Testimonials</li></a>
+          <a href="#faq"><li>FAQs</li></a>
+        </div>
+       <div className="contactform">
+            <h4>Contact Us</h4>
             <span className="inputfield">
             <span className="inputfield1">
-            <label htmlFor="name">Name</label>
             <input type="text" placeholder='Full Name' value={name} name="name" onChange={handlename} onBlur={handlevalidname}/>
             </span>
             <span className="inputfield2">
-            <label htmlFor="email">Email</label>
+           
             <input type="text" placeholder='Email Address' value={email} name="email" onChange={handleemail} onBlur={handlevalidemail}/>
             </span>
             </span>
-            <label htmlFor="message">Message</label>
             <input type="text" placeholder='Enter your Message' value={message} name="message" onChange={handlemssg}  className="mssg" onBlur={handlevalidmessage}/>
-            <span className="checkbox"><input type="checkbox" name="robot" checked={robot} placeholder="I'm not a robot" onChange ={handlerobo}/>I'm not a robot</span>
             <button className="send" onClick={handleSubmit}>Send</button>
 
         </div>
-        <div className="childimg">
-        <img src='./contact.png' alt="frame"/>
-        </div>
+      
       </div>
     </div>
   )

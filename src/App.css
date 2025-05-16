@@ -491,6 +491,10 @@ margin-bottom: 10px;
        overflow:visible;
        gap:0rem;
      }
+     .nav-img{
+      display: none;
+     }
+     
      .johny{
        order: 1;
        width: auto;
@@ -560,7 +564,7 @@ margin-bottom: 10px;
       .navbar p{
         width: auto;
         height:auto;
-        font-size: 19px;
+        font-size: 16px;
         }
         .logo{  
         font-size: 20px;
@@ -664,6 +668,7 @@ margin-bottom: 10px;
     font-size: 15px;
     line-height: 30px;
 }
+
 .pchild{
   width: 50%;
 }
@@ -894,6 +899,9 @@ letter-spacing: 0.03em;
   .feedback p,.email,.query{
     font-size: 13px;
   }
+  .obtion{
+  width: 80%;
+}
   .feedback .policy p {
     font-size: 14px;
     
@@ -1186,7 +1194,7 @@ padding:10px 10px 10px 30px;
 .page6{
   width:100vw;
   min-height:30vh;
-  background:linear-gradient(to top,rgba(63, 82, 83, 0.97),rgba(189, 223, 231, 1));
+  background:linear-gradient(to top,rgba(63, 82, 83, 1),rgba(10, 108, 115, 1));
   display:flex;
   flex-direction: column;
   /* align-items: center; */
@@ -1194,47 +1202,36 @@ padding:10px 10px 10px 30px;
 }
 .page6 h4{
   font-family: "Poppins", serif;    
-font-size: 44px;
-font-weight: 600;
+font-size: 35px;
+    font-weight: 400;
 display:inline-block;
-text-align: center;
-text-decoration-line: underline;
-
-
+text-align: left;
+}
+.leftContact p{
+  line-height: 1.5;
+  margin-top: 4%;
 }
 .contactimg{
   width:100%;
   min-height:100%;
   display:flex;
-  align-items: center;
   justify-content: space-around;
-
+  color: rgba(255, 255, 255, 1);
+  padding: 0px 10px;
+  padding-top: 2%;
 }
 .contactform{
-  width:55%;
-  min-height:450px;
   display:flex;
   flex-direction:column;
-  /* align-items: center; */
-  padding-left:80px;
-  
-  justify-content: space-around;
 }
 .childimg{
   width:45%;
   height:529px;
-  margin-top:-66px;
 
-}
-.childimg img{
-  width:100%;
-  height:100%;
 }
 .inputfield{
   display:flex;
-  flex-direction:row;
-  justify-content:space-around;
-  align-items: center;
+  flex-direction:column;
 }
 .inputfield1,.inputfield2{
   display:flex;
@@ -1244,17 +1241,16 @@ text-decoration-line: underline;
 font-size: 16px;
 font-weight: 400;
 color:rgba(255, 255, 255, 1);
-min-height:70px;
-width:50%;
 }
 .inputfield1 input,.inputfield2 input{
-width:80%;
-min-height: 35px;
+width:90%;
+min-height: 32px;
 border-radius: 10px;
 font-family: "Poppins", serif;     
 font-size: 16px;
 font-weight: 500;
 border:2px solid black;
+margin-bottom:5% ;
 }
 .contactform p{
   font-family: "Poppins", serif;     
@@ -1286,28 +1282,50 @@ border:2px solid black;
   height:30px;
   border:20px solid black;
 }
+.contactlinks{
+  list-style: none;
+}
+.contactlinks a li {
+  margin-top: 5%;
+  color: rgba(220, 220, 220, 1);
+}
+.leftContact{
+  width: 36%;
+}
 .send{
   font-family: "Poppins", serif;   
 font-size: 18px;
 font-weight: 500;
 color:rgba(0, 0, 0, 1);
-min-height:51px;
-width:30%;
+min-height:40px;
+width:90%;
 border-radius:10px;
+background-color: rgba(43, 138, 158, 1);
+margin-bottom: 4%;
 }
 .mssg{
-width:85%;
-height: 80px;
+width:90%;
+height: 60px;
 border-radius: 10px ;
 font-family: "Poppins", serif;     
 font-size: 16px;
 font-weight: 500;
 border:2px solid black;
+margin-bottom: 2%;
 }
 @media screen and (max-width:810px){
 .contactform{
   padding-left:30px;
 }
+}
+@media screen and (max-width:768px){
+.leftContact{
+  display: none;
+}
+.contactlinks{
+  margin-left: 5%;
+}
+
 }
 @media screen and (max-width:650px){
  .childimg{
@@ -1324,11 +1342,18 @@ border:2px solid black;
 .contactform{
   width:100%;
 }
-.page6 h4{
+.leftContact h4{
   font-size:33px;
+      
+}
+.page6 h4{
+  font-family: "Poppins", serif;    
+font-size: 27px;
+    font-weight: 400;
+display:inline-block;
+text-align: left;
 }
 .inputfield1 input, .inputfield2 input{
-  width:85%;
   padding-left:10px;
 }
 .mssg{
@@ -1771,9 +1796,9 @@ text-align:center;
 
 .choosecaregivers{
    width:100vw;
-   height:800vh;
+   height:200vh;
    max-height:auto;
-   background:linear-gradient(rgb(227, 248, 251),#61AEB9);
+   background:linear-gradient(#FFFFFFE5,#61AEB9);
    display:flex;
    flex-direction: column;
    align-items: center;
@@ -1822,10 +1847,9 @@ margin-top:20px;
   justify-content: space-around;
   padding:10px 20px 10px 20px;
 }
-.username1{
-  color:#37BAF1;
+.username{
   font-family: "Inter", serif;  
-font-weight: 600;
+font-weight: 400;
 font-size: 24px;
 text-align: left;
 }
@@ -1901,7 +1925,6 @@ font-size: 16px;
 .caregiverbutc{
   width:110px;
   height:35px;
-  border-radius:12px;
   color:rgba(3, 172, 240, 1);
   border:2px solid rgba(3, 172, 240, 1);
   margin-right:40px;
@@ -1909,7 +1932,6 @@ font-size: 16px;
 .caregiverbut{
   width:110px;
   height:35px;
-  border-radius:12px;
   color:rgba(3, 172, 240, 1);
   border:2px solid rgba(3, 172, 240, 1);
  
@@ -2057,87 +2079,7 @@ margin-top:20px;
 
 }
 
-/* //fetch caregiver responsive */
 
-@media screen and (max-width:770px){
- .caregiverimage{
-  height:30%;
-}
-.aboutcaregiver{
-  font-size:15px;
-}
-.expertise{
-  font-size:14px;
-}
-.dob{
-  display:none;
-}
-.allthreedetails{
-  justify-content: space-around;
-}
-}
-
-@media screen and (max-width:440px){
-   .login{
-    background: linear-gradient(rgb(227, 248, 251), rgba(97, 174, 185, 1));
-}
-form label{
-  background-color: unset;
-}
-  .loginform label{
-    background-color: unset;
-  }
-  
-  .caregiverimage{
-    height:19%;
-    width:10%;
-  }
-  .caregiverimage img{
-    border:2px solid grey;
-  }
-  .choosehead{
-    font-size:27px;
-  }
-  .caregiverbutc{
-    margin-right:5px;
-    width:74px;
-    height:30px;
-    font-size:10px;
-  }
-  .caregiverbut{
-    font-size:10px;
-    width:74px;
-    height:30px;
-  }
-  .aboutcaregiver , .expertise{
-    font-size:12px;
-  }
-  .obtion{
-    font-size:14px;
-  }
-  .username1{
-    font-size:20px;
-  }
-  .both{
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .profiledetails{
-    width:96%;
-  }
-  .profileimage{
-    margin-top:-10%;
-    margin-bottom:10px;
-  }
-  .otherdetails{
-    width:100%;
-    height:67%;
-  }
-  /* .lang h5 , .ed h5 , .contact h5{
-    border-bottom:2px dotted #37BAF1;
-  } */
-}
 
 /* modal */
 
