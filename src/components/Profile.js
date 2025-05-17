@@ -72,22 +72,25 @@ const Profile = ({ pass }) => {
     });
   };
 
-  const handlepayment = async () => {
-    let orderId = "OD" + Math.floor(Math.random() * Math.floor(Math.random() * Date.now()));
-    const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
-    if (!res) {
-      alert("Razorpay SDK failed to load. Are you online?");
-      return;
-    }
-
-    let paymentres = {
-      order_id: orderId,
-      amount: 100,
-      currency: "INR",
-      payment_capture: 1,
-    };
-
-    let result = await axios.post(`https://semicolon-backend-p6v3.onrender.com/api/v1/payment/create`, paymentres);
+  const handlepayment = async() =>{
+   let orderId =
+   "OD" + Math.floor(Math.random() * Math.floor(Math.random() * Date.now()));
+   const res = await loadScript(
+    "https://checkout.razorpay.com/v1/checkout.js"
+   );
+   if(!res){
+    alert("Razorpay sdk failed to load.Are you online");
+    return;
+   }
+   let paymentres = {
+    order_id:orderId,
+    amount:amount,
+    currency:"INR",
+    payment_capture:1,
+  }
+  let result = await axios.post(`https://semicolon-backend-p6v3.onrender.com/api/v1/payment/create`,
+    paymentres
+  );
 
     if (!result.data.data) {
       alert("Server error");

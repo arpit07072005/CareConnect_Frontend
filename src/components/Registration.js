@@ -112,8 +112,8 @@ const validateAadharOCR = async () => {
 
  const generateotp = async () => {
   try {
-    const response = await axios.post(
-      `http://localhost:8020/api/v1/user/otp/send`,
+     await axios.post(
+      `https://semicolon-backend-p6v3.onrender.com/api/v1/user/otp/send`,
       { phone: number }
     );
     toast.success("OTP sent to your number");
@@ -125,17 +125,22 @@ const validateAadharOCR = async () => {
 };
 const verifyOtp = async () => {
   try {
-    const response = await axios.post(
-      `http://localhost:8020/api/v1/user/otp/verify`,
+     await axios.post(
+      `https://semicolon-backend-p6v3.onrender.com/api/v1/user/otp/verify`,
       { phone: number, code: otp }
     );
     toast.success("OTP verified successfully");
     setOtpVerified(true);
-    setShowOTPInput(false)
+      if(otpVerified===true){
+        navigate("/");
+       }
+     toast.success("Registration Successfull");
+     
+       
   } catch (error) {
     console.error("OTP verification failed", error);
     toast.error("Invalid or expired OTP");
-    setOtpVerified(false);
+    // setOtpVerified(false);
   }
 };
 
@@ -145,7 +150,7 @@ const verifyOtp = async () => {
     const isAadharValid = await validateAadharOCR();
 
     generateotp();
-    setShowOTPInput(true);
+   
   if (!isAadharValid) return;
 
  
@@ -178,9 +183,7 @@ const verifyOtp = async () => {
       const response = await axios.post(
         `https://semicolon-backend-p6v3.onrender.com/api/v1/caregiver/register`,
         formData)
-        toast.success("Registration Successfull")
-       console.log("Registration successful", response.data);
-       navigate("/")
+       
     } catch (error) {
       console.error("register", error.response?.data || error.message);
       toast.error("register", error.response?.data || error.message)
