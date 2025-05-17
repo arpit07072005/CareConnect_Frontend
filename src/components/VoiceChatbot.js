@@ -5,6 +5,7 @@ const VoiceChatbot = () => {
   const [listening, setListening] = useState(false);
   const [transcript, setTranscript] = useState('');
   const navigate = useNavigate();
+  const [clicked,setClicked] = useState(true);
 
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   const recognition = new SpeechRecognition();
@@ -34,8 +35,8 @@ const VoiceChatbot = () => {
   // Step 4: Improved keyword matching
   const handleCommand = (text) => {
     const routes = {
-    signup: [ 'new','naya', 'what i do'],
-      Login: ['aa gaye', 'login ','old'],
+    signup: [ 'naya', 'new'],
+      Login: ['aa gaye', 'login '],
       Registration: ['caregiver', 'helper', 'job'],
     };
     for (const route in routes) {
@@ -53,7 +54,8 @@ const VoiceChatbot = () => {
   };
 
   return (
-    <div style={{ padding: 20 }}>
+    <div className='voicechatbot'>
+      <img src="./robot.png" alt="" />
       <button onClick={listening ? stopListening : startListening}>
         {listening ? 'Stop Listening' : 'Start Talking'}
       </button>
