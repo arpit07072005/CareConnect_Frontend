@@ -48,7 +48,9 @@ export default function Page2({master,handlecaregiver}) {
       );
       console.log(response,response.data)
       setModal(false)
+      
       toast.success("Form submitted successfully! 🎉");
+      fetchcaregiver();
       // setModal(false)
 
       
@@ -81,7 +83,7 @@ export default function Page2({master,handlecaregiver}) {
       </ul>
     <button className="app2"  onClick={() =>{
       if(master && Object.keys(master).length > 0){
-        setModal(true)
+        setModal(true);
         console.log(true)
       }
       else if(!master){

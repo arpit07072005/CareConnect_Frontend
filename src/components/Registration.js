@@ -5,7 +5,12 @@ import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import Tesseract from 'tesseract.js';
 
+
 export default function Registration() {
+  const [otp, setOtp] = useState("");
+const [showOTPInput, setShowOTPInput] = useState(false);
+const [otpVerified, setOtpVerified] = useState(false);
+  
   const navigate = useNavigate();
   const [dateOfBirth, setDateOfBirth] = useState("");
 const [careGiverImage, setCareGiverImage] = useState();
@@ -101,13 +106,49 @@ const validateAadharOCR = async () => {
     toast.error(" Failed to read Aadhaar image");
     return false;
   }
+
+
+};
+
+ const generateotp = async () => {
+  try {
+    const response = await axios.post(
+      `http://localhost:8020/api/v1/user/otp/send`,
+      { phone: number }
+    );
+    toast.success("OTP sent to your number");
+    setShowOTPInput(true); // 👈 show OTP input
+  } catch (error) {
+    console.error("OTP send failed:", error);
+    toast.error("Failed to send OTP");
+  }
+};
+const verifyOtp = async () => {
+  try {
+    const response = await axios.post(
+      `http://localhost:8020/api/v1/user/otp/verify`,
+      { phone: number, code: otp }
+    );
+    toast.success("OTP verified successfully");
+    setOtpVerified(true);
+    setShowOTPInput(false)
+  } catch (error) {
+    console.error("OTP verification failed", error);
+    toast.error("Invalid or expired OTP");
+    setOtpVerified(false);
+  }
 };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const isAadharValid = await validateAadharOCR();
+
+    generateotp();
+    setShowOTPInput(true);
   if (!isAadharValid) return;
+
+ 
     const formData = new FormData();
     formData.append("fullName", name);
     formData.append("dateOfBirth", dateOfBirth);
@@ -232,6 +273,7 @@ const validateAadharOCR = async () => {
     }  
   }
   return (
+    <>
     <div className="registrationform">
       <div className="careimage">
         <div className="careimagetext">
@@ -307,5 +349,20 @@ const validateAadharOCR = async () => {
         </form>
       </div>
     </div>
+    {showOTPInput && (
+  <div className="otp-section">
+    <input
+      type="text"
+      placeholder="Enter OTP"
+      value={otp}
+      onChange={(e) => setOtp(e.target.value)}
+    />
+    <button type="button" onClick={verifyOtp}>
+      Verify OTP
+    </button>
+  </div>
+)}
+
+    </>
   )
 }
