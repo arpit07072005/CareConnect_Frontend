@@ -50,11 +50,9 @@ const Profile = ({ pass }) => {
 
   const sendConfirmationEmail = async () => {
     try {
-     const response= await axios.post('https://semicolon-backend-p6v3.onrender.com/api/v1/gmail/sent-email', {
-        userEmail: 'arpitpandey07072005@gmail.com',
-        caregiverEmail: 'mohammad2311061@akgec.ac.in',
-        subject: 'Payment Successful',
-        message: 'Your payment is confirmed. Your appointment is scheduled.',
+        await axios.post('https://semicolon-backend-p6v3.onrender.com/api/v1/user/gmail/send/caregiver', {
+        gmail:{email},
+        message:"Your Appoitment Is Confirmed"
       });
       console.log(" Email sent successfully");
     } catch (error) {
@@ -84,11 +82,11 @@ const Profile = ({ pass }) => {
    }
    let paymentres = {
     order_id:orderId,
-    amount:amount,
+    amount:1,
     currency:"INR",
     payment_capture:1,
   }
-  let result = await axios.post(`https://semicolon-backend-p6v3.onrender.com/api/v1/payment/create`,
+  let result = await axios.post(`https://semicolon-backend-p6v3.onrender.com/api/v1/user/create`,
     paymentres
   );
 
@@ -104,7 +102,7 @@ const Profile = ({ pass }) => {
         name: "CareConnect",
         description: "Test Transaction",
         handler: async function (response) {
-          const result_1 = await axios.post(`https://semicolon-backend-p6v3.onrender.com/api/v1/payment/create`, {
+          const result_1 = await axios.post(`https://semicolon-backend-p6v3.onrender.com/api/v1/user/create`, {
             payment_id: response.razorpay_payment_id,
           });
           console.log("result_1", result_1);

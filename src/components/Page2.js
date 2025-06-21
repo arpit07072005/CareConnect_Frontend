@@ -15,12 +15,14 @@ export default function Page2({master,handlecaregiver}) {
   
   const navigate= useNavigate();
   const fetchcaregiver = async()=>{
+     
       try{
-          const response = await axios.get(`https://semicolon-backend-p6v3.onrender.com/api/v1/caregiver/fetch`);
-     // console.log(response.data);
+          const response = await axios.get(`https://semicolon-backend-p6v3.onrender.com/api/v1/user/fetch`);
+          console.log(response.data);
          
           handlecaregiver(response);
           navigate("/Caregivers")
+         
       }catch(error){
           console.log("error in fetching details");
       }
@@ -47,10 +49,11 @@ export default function Page2({master,handlecaregiver}) {
         formData
       );
       console.log(response,response.data)
+       fetchcaregiver();
       setModal(false)
       
       toast.success("Form submitted successfully! 🎉");
-      fetchcaregiver();
+  
       // setModal(false)
 
       

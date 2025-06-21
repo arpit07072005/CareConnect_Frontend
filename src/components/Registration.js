@@ -114,7 +114,7 @@ const validateAadharOCR = async () => {
   try {
      await axios.post(
       `https://semicolon-backend-p6v3.onrender.com/api/v1/user/otp/send`,
-      { phone: number }
+      { number: number }
     );
     toast.success("OTP sent to your number");
     setShowOTPInput(true); // 👈 show OTP input
@@ -181,7 +181,7 @@ const verifyOtp = async () => {
   
     try {
       const response = await axios.post(
-        `https://semicolon-backend-p6v3.onrender.com/api/v1/caregiver/register`,
+        `https://semicolon-backend-p6v3.onrender.com/api/v1/user/register`,
         formData)
        
     } catch (error) {
