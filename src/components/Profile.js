@@ -95,12 +95,12 @@ const Profile = ({ pass }) => {
       return;
     } else {
       let options = {
-        key: "rzp_test_Q7oKfaXRA0EIVg",
+        key: "rzp_live_Jj7Ffl3Nldxuhu",
         currency: result.data.data.currency,
         amount: result.data.data.amount,
         order_id: result.data.id,
         name: "CareConnect",
-        description: "Test Transaction",
+        description: "Live Transaction",
         handler: async function (response) {
           const result_1 = await axios.post(`https://semicolon-backend-p6v3.onrender.com/api/v1/user/create`, {
             payment_id: response.razorpay_payment_id,
