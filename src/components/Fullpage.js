@@ -7,13 +7,13 @@ import Page4 from './Page4';
 import Page5 from './Page5';
 import Contact from './Contact';
 import VoiceChatbot from './VoiceChatbot';
-export default function Fullpage({master ,handlecaregiver}) {
+export default function Fullpage({master ,handlecaregiver,handlesignedclient}) {
    
   return (
    <>
    <Page1/>
    <VoiceChatbot/>
-   <Page2 master={master} handlecaregiver={handlecaregiver}/>
+   <Page2 master={master} handlecaregiver={handlecaregiver} handlesignedclient={handlesignedclient}/>
    <Page3/>
    <Page4/>
    <Page5/>

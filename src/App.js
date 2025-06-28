@@ -21,6 +21,7 @@ function App() {
   const[master,setmaster]=useState({})
   const[caregiver,setCaregiver]=useState([])
   const[pass,setPass]=useState({})
+  const[client,SetClient]=useState({})
 
   // SIGNUP FUNCTIONALITY
   useEffect(() => {
@@ -45,6 +46,10 @@ const handlecaregiver = (res) => {
     console.error("Expected caregiver to be an array, got:", res);
   }
 };
+
+const handlesignedclient = (client)=>{
+  SetClient(client);
+}
 
 const passprops=(phone,name,experience,image,field,dob,email,education,lang,aadhar)=>{
   setPass(prevPass => ({
@@ -79,13 +84,13 @@ useEffect(() => {
       <Navbar master={master} setmaster={setmaster}/>
       
       <Routes>
-      <Route path="/" element={<Fullpage master={master} handlecaregiver={handlecaregiver} />} />
+      <Route path="/" element={<Fullpage master={master} handlecaregiver={handlecaregiver} handlesignedclient={handlesignedclient} />} />
        <Route path="/voicechat" element={<VoiceChatbot />} />
       <Route path="/Registration" element={<Registration/>} />
       <Route path="/Login" element={<Login handlemaster ={handlemaster}/>} />
       <Route path="/signup" element={<Signup />}/>
       <Route path="/Caregivers" element={<Caregivers caregiver={caregiver} passprops={passprops} />}/>
-      <Route path="/profile" element={<Profile  pass={pass}/>}/>
+      <Route path="/profile" element={<Profile  pass={pass} client={client}/>}/>
     <Route path="/" element={<Signup/>}/>
        </Routes>
        </Router>

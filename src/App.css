@@ -2135,6 +2135,9 @@ font-weight: 500;
 font-size: 17px;
 
 }
+.nomodalinput{
+  display:none;
+}
 .modelhead{
    font-family: "Inter", serif;       
 font-weight: 500;

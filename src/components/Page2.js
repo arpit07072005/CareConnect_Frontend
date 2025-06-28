@@ -1,14 +1,15 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 
-export default function Page2({master,handlecaregiver}) {
-
+export default function Page2({master,handlecaregiver,handlesignedclient}) {
+  const[display,setdisplay]=useState(false)
   const[modal,setModal]=useState(false)
   const[name,setName]=useState("");
   const[email,setEmail]=useState("");
   const[phone,setPhone]=useState("");
+  const[signedupclient,setSignedupClient]=useState({})
   const[address,setAddress]=useState("");
     const[service,setService]=useState("");
   const[clientdata,setClientdata]=useState([]);
@@ -29,8 +30,35 @@ export default function Page2({master,handlecaregiver}) {
   }
 
   const handleClient = async(e) =>{
+    if(display===false){
+    try{
+    const response = await axios.get("https://semicolon-backend-p6v3.onrender.com/api/v1/user/client/fetch");
    
-      if (
+    const registeredclient = response.data.data.find((client)=>client.email===email)
+     
+    if(registeredclient){
+      setSignedupClient(registeredclient)
+      handlesignedclient(registeredclient)
+     
+      fetchcaregiver();
+        navigate("/Caregivers")
+       setModal(false)
+      toast.success("Client Signed up Successfully 🎉");
+}
+else{
+  setName("");
+  setEmail("");
+  setPhone("");
+  setdisplay(true)
+  toast.error("Client Not Registered");
+}
+    }catch(error){
+      console.log("client not registered");
+    }
+  }
+  else{
+    try{
+       if (
       !name || !email || !phone || !address || !service
     ) {
       toast.error("Please fill all the required fields.");
@@ -45,19 +73,28 @@ export default function Page2({master,handlecaregiver}) {
       };
       setClientdata((prev) => [...prev, formData]);
       console.log(formData)
-      const response = await axios.post(`https://semicolon-backend-p6v3.onrender.com/api/v1/user/client`,
+       await axios.post(`https://semicolon-backend-p6v3.onrender.com/api/v1/user/client`,
         formData
       );
-      console.log(response,response.data)
-       fetchcaregiver();
-      setModal(false)
-      
-      toast.success("Form submitted successfully! 🎉");
-  
-      // setModal(false)
+      setdisplay(false)
+      toast.success("Form submitted successfully! 🎉")
+      setName("");
+      setEmail("");
+      setPhone("");
+    }catch(error){
+      console.log("error in registering client");
+    }
+  }
 
       
   }
+
+  useEffect(() => {
+  if (signedupclient && Object.keys(signedupclient).length > 0) {
+    console.log("Client found ✅", signedupclient);
+  }
+}, [signedupclient]);
+
 
   return (
     <>
@@ -119,16 +156,16 @@ export default function Page2({master,handlecaregiver}) {
             <input type="text" className="modalinput" value={name} placeholder='Full Name'  onChange={(e) => setName(e.target.value)}/>
             <input type="text" className="modalinput" value={email} placeholder='Email Address'  onChange={(e) => setEmail(e.target.value)}/>
             <input type="text" className="modalinput" value={phone} placeholder='Phone Number '  onChange={(e) => setPhone(e.target.value)}/>
-            <select value={service} className="modalinput" placeholder="Services Required"  onChange={(e) => setService(e.target.value)}>
+            <select value={service} className={display===false?"nomodalinput":"modalinput"} placeholder="Services Required"  onChange={(e) => setService(e.target.value)}>
               <option>Elderly Care</option> 
               <option>Child Care</option> 
               <option>Nursing</option> 
               <option>Special Needs Care</option> 
               <option> Other</option> 
             </select>
-              <input type="text" className="modalinput" value={address} placeholder='Address'  onChange={(e) => setAddress(e.target.value)}/>
+              <input type="text" className={display===false?"nomodalinput":"modalinput"} value={address} placeholder='Address'  onChange={(e) => setAddress(e.target.value)}/>
           </form>
-        <button onClick={handleClient} className="modalsubmit">Register</button>
+        <button onClick={handleClient} className="modalsubmit">{display===false?"Client Sign in":"Client Register"}</button>
         </div>
 
       </div>
@@ -139,5 +176,13 @@ export default function Page2({master,handlecaregiver}) {
   </>
   )
 }
+
+ 
+     
+     
+    //    fetchcaregiver();
+    //   setModal(false)
+      
+    //   ;
 
 

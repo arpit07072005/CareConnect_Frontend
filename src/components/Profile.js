@@ -2,17 +2,22 @@ import axios from 'axios';
 import { Check, Heart, IndianRupee, Stethoscope } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 
-const Profile = ({ pass }) => {
+const Profile = ({ pass , client }) => {
   const [like, Setlikes] = useState(false);
   const [language, setLanguage] = useState([]);
   const [edu, setEdu] = useState([]);
   const [amount, setAmount] = useState(null);
+  const[paymentdone,setPaymentdone]=useState(false);
 
   const { phone, name, experience, image, field, dob, email, education, lang, aadhar } = pass;
 
   const handleclick = () => {
     Setlikes(!like);
   };
+
+  useEffect(()=>{
+   console.log(client.email)
+  },[])
 
   useEffect(() => {
     if (lang) {
@@ -48,17 +53,24 @@ const Profile = ({ pass }) => {
     setAmount(newAmount);
   }, [experience]);
 
-  const sendConfirmationEmail = async () => {
-    try {
-        await axios.post('https://semicolon-backend-p6v3.onrender.com/api/v1/user/gmail/send/caregiver', {
-        gmail:{email},
-        message:"Your Appoitment Is Confirmed"
-      });
-      console.log(" Email sent successfully");
-    } catch (error) {
-      console.error(" Error sending email:", error.message);
+  useEffect(()=>{
+    const sendcaregivermail = async()=>{
+      try{
+        await axios.post("https://semicolon-backend-p6v3.onrender.com/api/v1/user/gmail/send/client",{
+          gmail:client.email,
+          message:client.address
+        })
+      }catch(error){
+        console.log(error);
+      }
     }
-  };
+     if (paymentdone) {
+    sendcaregivermail(); // ✅ Call function only when payment is marked done
+  }
+  },[paymentdone])
+  useEffect(() => {
+  console.log("Payment Done Updated ✅:", paymentdone);
+}, [paymentdone]);
 
   const loadScript = (src) => {
     return new Promise((resolve) => {
@@ -95,7 +107,7 @@ const Profile = ({ pass }) => {
       return;
     } else {
       let options = {
-        key: "rzp_live_Jj7Ffl3Nldxuhu",
+        key: "rzp_live_D0LI2klGS3xY8S",
         currency: result.data.data.currency,
         amount: result.data.data.amount,
         order_id: result.data.id,
@@ -107,8 +119,8 @@ const Profile = ({ pass }) => {
           });
           console.log("result_1", result_1);
 
-          // ✅ Send email after successful payment
-          await sendConfirmationEmail();
+          setPaymentdone(true); 
+          console.log(paymentdone);
         },
         prefill: {
           email: "mohammad2311061@akgec.ac.in",
