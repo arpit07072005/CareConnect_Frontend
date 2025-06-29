@@ -1,14 +1,19 @@
 import axios from 'axios';
 import { Check, Heart, IndianRupee, Stethoscope } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 const Profile = ({ pass , client }) => {
+  const navigate=useNavigate();
   const [like, Setlikes] = useState(false);
   const [language, setLanguage] = useState([]);
   const [edu, setEdu] = useState([]);
   const [amount, setAmount] = useState(null);
-  const[paymentdone,setPaymentdone]=useState(false);
-
+  const[verify,setverify]=useState(false);
+  const[payid,setpayid]=useState("")
+  const[verifystatus,setverifystatus]=useState()
+ 
   const { phone, name, experience, image, field, dob, email, education, lang, aadhar } = pass;
 
   const handleclick = () => {
@@ -53,24 +58,9 @@ const Profile = ({ pass , client }) => {
     setAmount(newAmount);
   }, [experience]);
 
-  useEffect(()=>{
-    const sendcaregivermail = async()=>{
-      try{
-        await axios.post("https://semicolon-backend-p6v3.onrender.com/api/v1/user/gmail/send/client",{
-          gmail:client.email,
-          message:client.address
-        })
-      }catch(error){
-        console.log(error);
-      }
-    }
-     if (paymentdone) {
-    sendcaregivermail(); // ✅ Call function only when payment is marked done
-  }
-  },[paymentdone])
-  useEffect(() => {
-  console.log("Payment Done Updated ✅:", paymentdone);
-}, [paymentdone]);
+ 
+
+ 
 
   const loadScript = (src) => {
     return new Promise((resolve) => {
@@ -113,15 +103,6 @@ const Profile = ({ pass , client }) => {
         order_id: result.data.id,
         name: "CareConnect",
         description: "Live Transaction",
-        handler: async function (response) {
-          const result_1 = await axios.post(`https://semicolon-backend-p6v3.onrender.com/api/v1/user/create`, {
-            payment_id: response.razorpay_payment_id,
-          });
-          console.log("result_1", result_1);
-
-          setPaymentdone(true); 
-          console.log(paymentdone);
-        },
         prefill: {
           email: "mohammad2311061@akgec.ac.in",
           contact: 6387034769,
@@ -136,10 +117,70 @@ const Profile = ({ pass , client }) => {
 
       let paymentObject = new window.Razorpay(options);
       paymentObject.open();
+
+      setverify(true);
+
+      
     }
   };
 
+  const handleverify = async(e) => {
+    if(e.target.className==="paymentid"){
+    setpayid(e.target.value)
+    }
+    try{
+      const response = await axios.post("https://semicolon-backend-p6v3.onrender.com/api/v1/user/card-details",{
+        id:payid
+    })
+    console.log(response.data.success);
+    setverifystatus(response.data.success)
+    if(response.data.success===true){
+    toast.success("Caregiver Booked successfully");
+    setverify(false)
+    navigate("/")
+    try{
+      await axios.post("https://semicolon-backend-p6v3.onrender.com/api/v1/user/gmail/send/caregiver",{
+        gmail:client.email,
+         message: `Booking Confirmed ✅
+                   Client Name: ${client.fullName}
+                   Client Email: ${client.email}
+                   Client Address: ${client.address}
+                   Client phone no.:${client.phoneNumber}
+                   Payment ID: ${payid}
+                   Please contact the client as soon as possible.`
+
+      })
+     await axios.post("https://semicolon-backend-p6v3.onrender.com/api/v1/user/gmail/send/client",{
+        gmail:email,
+         message: `Booking Confirmed ✅
+                   Caregiver Name: ${name}
+                   Caregiver Email: ${email}
+                   Caregiver Aadhar: ${aadhar}
+                   Caregiver Image :${image}
+                   Caregiver Experience:${experience}
+                   Caregiver Field :${field}
+                   Caregiver Language : ${lang}
+                   Caregiver phone no.:${phone}
+                   Payment ID: ${payid}
+                   Please contact the caregiver as soon as possible.`
+
+      })
+
+    }catch(error){
+      console.log("gmail not send")
+    }
+
+    }else{
+      toast.error("invalid payment details");
+
+    }
+    }catch(error){
+      console.log(error);
+    }
+  }
+
   return (
+    <>
     <div className="profile">
       <p className="profilehead">Profile</p>
       <div className="both">
@@ -223,6 +264,19 @@ const Profile = ({ pass , client }) => {
         </div>
       </div>
     </div>
+
+    {verify && (
+      <div className="paymentverify">
+        <div className="unserverify">
+        <h2 className= "pvhead">
+          Payment id
+        </h2>
+        <input type="text" value={payid} className="paymentid" onChange={((e)=>{setpayid(e.target.value)})} />
+        <button className = "paymentverifybutton" onClick={handleverify}>Verify</button>
+        </div>
+      </div>
+    )}
+    </>
   );
 };
 
