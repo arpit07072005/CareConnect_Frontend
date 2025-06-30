@@ -22,6 +22,7 @@ function App() {
   const[caregiver,setCaregiver]=useState([])
   const[pass,setPass]=useState({})
   const[client,SetClient]=useState({})
+  const[payid,setpayid]=useState()
 
   // SIGNUP FUNCTIONALITY
   useEffect(() => {
@@ -34,6 +35,10 @@ function App() {
  
   const handlemaster = (user)=>{
     setmaster(user)
+  }
+
+  const handlepayid = (id) =>{
+    setpayid(id)
   }
 
  
@@ -51,7 +56,7 @@ const handlesignedclient = (client)=>{
   SetClient(client);
 }
 
-const passprops=(phone,name,experience,image,field,dob,email,education,lang,aadhar)=>{
+const passprops=(phone,name,experience,image,field,dob,email,education,lang,aadhar,bookingdetails,completedBookings)=>{
   setPass(prevPass => ({
     ...prevPass,
     phone,
@@ -63,7 +68,8 @@ const passprops=(phone,name,experience,image,field,dob,email,education,lang,aadh
     email,
     education,
     lang,
-    aadhar
+    aadhar,
+    bookingdetails
   }));
   
   // console.log(pass.name);
@@ -81,7 +87,7 @@ useEffect(() => {
   return (
     <div className="App">
       <Router>
-      <Navbar master={master} setmaster={setmaster}/>
+      <Navbar master={master} setmaster={setmaster} pass={pass} client={client} payid={payid}/>
       
       <Routes>
       <Route path="/" element={<Fullpage master={master} handlecaregiver={handlecaregiver} handlesignedclient={handlesignedclient} />} />
@@ -90,7 +96,7 @@ useEffect(() => {
       <Route path="/Login" element={<Login handlemaster ={handlemaster}/>} />
       <Route path="/signup" element={<Signup />}/>
       <Route path="/Caregivers" element={<Caregivers caregiver={caregiver} passprops={passprops} />}/>
-      <Route path="/profile" element={<Profile  pass={pass} client={client}/>}/>
+      <Route path="/profile" element={<Profile  pass={pass} client={client} handlepayid={handlepayid}/>}/>
     <Route path="/" element={<Signup/>}/>
        </Routes>
        </Router>

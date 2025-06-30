@@ -12,7 +12,7 @@ export default function Fullpage({master ,handlecaregiver,handlesignedclient}) {
   return (
    <>
    <Page1/>
-   <VoiceChatbot/>
+   {/* <VoiceChatbot/> */}
    <Page2 master={master} handlecaregiver={handlecaregiver} handlesignedclient={handlesignedclient}/>
    <Page3/>
    <Page4/>

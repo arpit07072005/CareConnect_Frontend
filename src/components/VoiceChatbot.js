@@ -1,68 +1,68 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import React, { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
 
-const VoiceChatbot = () => {
-  const [listening, setListening] = useState(false);
-  const [transcript, setTranscript] = useState('');
-  const navigate = useNavigate();
-  const [clicked,setClicked] = useState(true);
+// const VoiceChatbot = () => {
+//   const [listening, setListening] = useState(false);
+//   const [transcript, setTranscript] = useState('');
+//   const navigate = useNavigate();
+//   const [clicked,setClicked] = useState(true);
 
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  const recognition = new SpeechRecognition();
+//   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+//   const recognition = new SpeechRecognition();
 
-  recognition.lang = 'en-US';
-  recognition.continuous = false;
-  recognition.onresult = (event) => {
-    const text = event.results[0][0].transcript;
-    setTranscript(text);
-    handleCommand(text.toLowerCase());
-  };
+//   recognition.lang = 'en-US';
+//   recognition.continuous = false;
+//   recognition.onresult = (event) => {
+//     const text = event.results[0][0].transcript;
+//     setTranscript(text);
+//     handleCommand(text.toLowerCase());
+//   };
 
-  recognition.onerror = (event) => {
-    alert("Error in speech recognition: " + event.error);
-  };
+//   recognition.onerror = (event) => {
+//     alert("Error in speech recognition: " + event.error);
+//   };
 
-  const startListening = () => {
-    setListening(true);
-    recognition.start();
-  };
+//   const startListening = () => {
+//     setListening(true);
+//     recognition.start();
+//   };
 
-  const stopListening = () => {
-    setListening(false);
-    recognition.stop();
-  };
+//   const stopListening = () => {
+//     setListening(false);
+//     recognition.stop();
+//   };
 
-  // Step 4: Improved keyword matching
-  const handleCommand = (text) => {
-    const routes = {
-    signup: [ 'naya', 'new'],
-      Login: ['aa gaye', 'login '],
-      Registration: ['caregiver', 'helper', 'job'],
-    };
-    for (const route in routes) {
-      for (const keyword of routes[route]) {
-        if (text.includes(keyword)) {
+//   // Step 4: Improved keyword matching
+//   const handleCommand = (text) => {
+//     const routes = {
+//     signup: [ 'naya', 'new'],
+//       Login: ['aa gaye', 'login '],
+//       Registration: ['caregiver', 'helper', 'job'],
+//     };
+//     for (const route in routes) {
+//       for (const keyword of routes[route]) {
+//         if (text.includes(keyword)) {
            
-          navigate('/' + route);
+//           navigate('/' + route);
             
-          return;
+//           return;
             
-        }
-      }
-    }
-    alert("Sorry, I didn't understand. Try saying new, login, or job.");
-  };
+//         }
+//       }
+//     }
+//     alert("Sorry, I didn't understand. Try saying new, login, or job.");
+//   };
 
-  return (
-    <div className='voicechatbot'>
-      <img src="./robot.png" alt="" />
-      <button onClick={listening ? stopListening : startListening}>
-        {listening ? 'Stop Listening' : 'Start Talking'}
-      </button>
-      <p><b>You said:</b> {transcript}</p>
-      <p>Try saying: new, login, or job</p>
-    </div>
-  );
-};
+//   return (
+//     <div className='voicechatbot'>
+//       <img src="./robot.png" alt="" />
+//       <button onClick={listening ? stopListening : startListening}>
+//         {listening ? 'Stop Listening' : 'Start Talking'}
+//       </button>
+//       <p><b>You said:</b> {transcript}</p>
+//       <p>Try saying: new, login, or job</p>
+//     </div>
+//   );
+// };
 
-export default VoiceChatbot;
+// export default VoiceChatbot;

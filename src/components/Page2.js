@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { SquareX } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
@@ -95,6 +96,10 @@ else{
   }
 }, [signedupclient]);
 
+const handleremove = () =>{
+  setModal(false)
+}
+
 
   return (
     <>
@@ -148,6 +153,7 @@ else{
    {modal && (
       <div className="modal">
         <div className="inner-modal">
+          <span className="cancel1" onClick={handleremove}><SquareX/></span>
           <div className="modellogo">
             <img src="./model.png"  alt="" height="80px"/>
           </div>

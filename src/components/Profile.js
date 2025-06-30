@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { Check, Heart, IndianRupee, Stethoscope } from 'lucide-react';
+import { Check, Heart, IndianRupee, SquareX, Stethoscope } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 
-const Profile = ({ pass , client }) => {
+const Profile = ({ pass , client ,handlepayid}) => {
   const navigate=useNavigate();
   const [like, Setlikes] = useState(false);
   const [language, setLanguage] = useState([]);
@@ -97,7 +97,7 @@ const Profile = ({ pass , client }) => {
       return;
     } else {
       let options = {
-        key: "rzp_live_D0LI2klGS3xY8S",
+        key: "rzp_test_Q7oKfaXRA0EIVg",
         currency: result.data.data.currency,
         amount: result.data.data.amount,
         order_id: result.data.id,
@@ -132,6 +132,7 @@ const Profile = ({ pass , client }) => {
       const response = await axios.post("https://semicolon-backend-p6v3.onrender.com/api/v1/user/card-details",{
         id:payid
     })
+    handlepayid(payid)
     console.log(response.data.success);
     setverifystatus(response.data.success)
     if(response.data.success===true){
@@ -177,6 +178,10 @@ const Profile = ({ pass , client }) => {
     }catch(error){
       console.log(error);
     }
+  }
+
+  const handleremove =()=>{
+    setverify(false)
   }
 
   return (
@@ -268,6 +273,7 @@ const Profile = ({ pass , client }) => {
     {verify && (
       <div className="paymentverify">
         <div className="unserverify">
+            <span className="cancel1" onClick={handleremove}><SquareX/></span>
         <h2 className= "pvhead">
           Payment id
         </h2>
