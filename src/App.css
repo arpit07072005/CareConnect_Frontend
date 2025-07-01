@@ -140,17 +140,18 @@ display: block;
 }
 
 .navmodal{
-  position: fixed;
-    top: 56%;
+  position: absolute;
+    top: 87%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 700px;
-    height: 554px;
+    width: auto;
+    height: auto;
     padding: 2%;
     background-color: rgba(139, 199, 212, 1);
     border-radius: 2%;
     z-index:7887;
     display:flex;
+    overflow-y:scroll;
     /* align-items: center; */
     /* justify-content: space-between; */
     flex-direction: column;
@@ -181,7 +182,7 @@ display: block;
   background-color:rgb(192, 222, 228);
     width: 100%;
    height:auto;
-    padding:10px;
+    padding:10px 35px 10px 10px;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -195,7 +196,7 @@ display: block;
 
 }
 .completed{
-  width:24%;
+  width:124px;
   padding:8px;
   background-color: #37BAF1;
   border-radius:12px;
@@ -203,6 +204,18 @@ display: block;
   font-size:18px;
   font-weight: 500;
     font-family: "Outfit", serif;
+    margin-top: 16px;
+}
+.completed1{
+  width:140px;
+  padding:8px;
+  background-color: #37BAF1;
+  border-radius:12px;
+  border:none;
+  font-size:18px;
+  font-weight: 500;
+    font-family: "Outfit", serif;
+    margin-top: 16px;
 }
 .notcompleted{
    width:24%;
@@ -213,6 +226,20 @@ display: block;
   font-size:18px;
   font-weight: 500;
     font-family: "Outfit", serif;
+    margin-top: 16px;
+
+}
+.notcompleted1{
+   width:24%;
+  padding:8px;
+  background-color: red;
+  border-radius:12px;
+  border:none;
+  font-size:18px;
+  font-weight: 500;
+    font-family: "Outfit", serif;
+    margin-top: 16px;
+
 }
 .clientdetails{
   display:flex;

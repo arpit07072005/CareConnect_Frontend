@@ -2,13 +2,14 @@
 
 ## Team Information
 
-**Team Name:** Team PixelPushers  
+**Team Name:** Team CareGivers 
 **College Name:** Ajay Kumar Garg Engineering College  
 
 **Team Members:**  
 - Mohammad Ziya  
 - Arpit Pandey  
-- Mohammad Kaif  
+- Adarsh Kumar Srivastava
+- Abhishek Yadav 
 
 ---
 
