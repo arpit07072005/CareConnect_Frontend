@@ -3,12 +3,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link, useNavigate  } from 'react-router-dom'; 
 import { toast } from 'react-toastify'
-import  { SquareX } from "lucide-react";
+import  { SquareX, Star } from "lucide-react";
 import axios from 'axios';
 
 export default function Navbar({ master , setmaster , pass , client , payid}) {
   const [menuopen, setMenuopen] = useState(false);
-  const [bcare, setBcare] = useState(false);
+  
   const[navmodal,Setnavmodel]=useState(false)
   const[clientnavmodal,Setclientnavmodel]=useState(false)
   const navigate = useNavigate();
@@ -16,8 +16,13 @@ export default function Navbar({ master , setmaster , pass , client , payid}) {
    const[button1,setbutton1]=useState(true)
   const[booked,setbooked]=useState([])
   const[bookedclient,setbookedclient]=useState([])
+  const [rating, setRating] = useState(0);
+  const [hovered, setHovered] = useState(0);
+  const[clientrating,setclientRating]=useState(false)
+  const[caregiverrating,setcaregiverRating]=useState(false)
+  const[review,setReview]=useState("")
 
-  const { phone, name, experience, image, field, dob, email, education, lang, aadhar ,bookingdetails, completedBookings = []  } = pass;
+  const { phone, name, image, email, aadhar } = pass;
   
 
 
@@ -58,6 +63,8 @@ export default function Navbar({ master , setmaster , pass , client , payid}) {
      console.log(bookedcaregiver.completedBookings)
      setbooked(bookedcaregiver.completedBookings)
      toast.success("Service Completed")
+     Setnavmodel(false)
+     setclientRating(true) 
     }catch(error){
       console.log(error);
       toast.error("api not working")
@@ -65,7 +72,7 @@ export default function Navbar({ master , setmaster , pass , client , payid}) {
   }
 
   const updateclientdashboard = async() =>{
-    setbutton(false)
+    setbutton1(false)
     try{
      await axios.post("https://semicolon-backend-p6v3.onrender.com/api/v1/user/mark-clientcomplete",{
       clientName:client.fullName,
@@ -82,9 +89,40 @@ export default function Navbar({ master , setmaster , pass , client , payid}) {
      console.log(bookedclient.completedBookings)
      setbookedclient(bookedclient.completedBookings)
      toast.success("Service Completed")
+     Setclientnavmodel(false)
+     setcaregiverRating(true)
     }catch(error){
       console.log(error);
       toast.error("api not working")
+    }
+  }
+
+  const handlerating = async() =>{
+    if(clientrating){
+      await axios.post("https://semicolon-backend-p6v3.onrender.com/api/v1/user/clientrating",{
+        clientName:client.fullName,
+        ratingreview:{
+          Rating:rating,
+          Review:review
+        }
+      })
+      toast.success("Client rated Successfully")
+      setRating(0);
+      setReview("")
+      setclientRating(false);
+    }
+    else if(caregiverrating){
+       await axios.post("https://semicolon-backend-p6v3.onrender.com/api/v1/user/caregiverrating",{
+        caregiverName:name,
+        ratingreview:{
+          Rating:rating,
+          Review:review
+        }
+      })
+       toast.success("Caregiver rated Successfully")
+      setRating(0);
+      setReview("")
+      setcaregiverRating(false);
     }
   }
   
@@ -204,6 +242,34 @@ return (
           
 
           </div>
+      )}
+
+      {(clientrating || caregiverrating) && (
+        <div className="rating">
+           <span className="cancel" onClick={handleremove}><SquareX/></span>
+           <h2 className="ratinghead">Rate Your {clientrating?"Client":"Caregiver"}</h2>
+           <div className="star">
+            {[1,2,3,4,5].map((star)=>{
+              return(
+                <Star key={star}
+                size={30}
+                fill={(hovered || rating) >= star ? 'blue' : 'none'}
+                onMouseEnter={() => setHovered(star)}
+              onMouseLeave={() => setHovered(0)}
+              onClick={() => setRating(star)}
+            />
+              )
+            })}
+           </div>
+           <div className = "review">
+            <textarea  rows="4"
+            cols="50"
+            placeholder="Write your review..."
+            value={review}
+            onChange={(e) => setReview(e.target.value)}/>
+           </div>
+           <button className="ratingsubmit" onClick={handlerating}>Submit</button>
+        </div>
       )}
     </>
   );

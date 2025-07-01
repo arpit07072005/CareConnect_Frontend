@@ -141,7 +141,7 @@ display: block;
 
 .navmodal{
   position: absolute;
-    top: 87%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: auto;
@@ -207,7 +207,7 @@ display: block;
     margin-top: 16px;
 }
 .completed1{
-  width:140px;
+  width:124px;
   padding:8px;
   background-color: #37BAF1;
   border-radius:12px;
@@ -218,7 +218,7 @@ display: block;
     margin-top: 16px;
 }
 .notcompleted{
-   width:24%;
+   width:124px;
   padding:8px;
   background-color: red;
   border-radius:12px;
@@ -228,6 +228,59 @@ display: block;
     font-family: "Outfit", serif;
     margin-top: 16px;
 
+}
+.rating{
+   position:fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height:auto;
+    padding: 2%;
+    background-color: rgba(139, 199, 212, 1);
+    border-radius: 12px;
+    z-index:7887;
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    /* align-items: center; */
+    /* justify-content: space-between; */
+    flex-direction: column;
+}
+.review{
+  width:90%;
+}
+textarea{
+  width:100%;
+  height:120px;
+  border-radius: 12px;
+  padding:10px;
+  font-size:18px;
+}
+.ratinghead{
+ font-family: "Outfit", serif;
+  font-weight: 600;
+  letter-spacing: 0.02rem;
+  font-size: 30px;
+  margin-bottom:15px;
+  text-align: center;
+   font-family: "Outfit", serif;
+}
+.star{
+  gap:10px;
+  margin-bottom: 15px;
+  display:flex;
+}
+.ratingsubmit{
+ width:124px;
+  padding:8px;
+  background-color: #37BAF1;
+  border-radius:12px;
+  border:none;
+  font-size:18px;
+  font-weight: 500;
+    font-family: "Outfit", serif;
+    margin-top: 16px;
 }
 .notcompleted1{
    width:24%;
