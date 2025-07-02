@@ -25,6 +25,7 @@ const [drivingLicence, setDrivingLicence] = useState("");
   const[address,setAddress]=useState("")
   const[qualification,setQualification]=useState("")
   const[language,setLanguage]=useState("") 
+  const[mail,setmail]=useState("")
 
 
   const validname = /^[a-zA-Z]+( [a-zA-Z]+){1,}$/;
@@ -114,7 +115,7 @@ const validateAadharOCR = async () => {
   try {
      await axios.post(
       `https://semicolon-backend-p6v3.onrender.com/api/v1/user/otp/send`,
-      { number: number }
+      { email: email }
     );
     toast.success("OTP sent to your number");
     setShowOTPInput(true); // 👈 show OTP input
@@ -127,7 +128,7 @@ const verifyOtp = async () => {
   try {
      await axios.post(
       `https://semicolon-backend-p6v3.onrender.com/api/v1/user/otp/verify`,
-      { phone: number, code: otp }
+      { email: mail, code: otp }
     );
     toast.success("OTP verified successfully");
     setOtpVerified(true);
@@ -356,10 +357,17 @@ const verifyOtp = async () => {
   <div className="otp-section">
     <input
       type="text"
+      placeholder="Enter gmail"
+      value={mail}
+      onChange={(e) => setmail(e.target.value)}
+    />
+    <input
+      type="text"
       placeholder="Enter OTP"
       value={otp}
       onChange={(e) => setOtp(e.target.value)}
     />
+
     <button type="button" onClick={verifyOtp}>
       Verify OTP
     </button>

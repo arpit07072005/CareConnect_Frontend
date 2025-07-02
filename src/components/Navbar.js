@@ -186,7 +186,7 @@ return (
                    <span className = "details">Client Address: {client.address}</span>
                    <span className = "details">Client phone no.:{client.phoneNumber}</span>
                    <span className = "details">Payment ID: {payid}</span>
-                   <button className ={button?"completed":"notcompleted"} onClick={updatedashboard} disabled={!button}>{button?"Completed":"Not Completed"}</button>
+                   <button className ={button?"completed":"notcompleted"} onClick={updatedashboard}>{button?"Completed":"Not Completed"}</button>
                    </div>
 
           </div>
@@ -220,7 +220,7 @@ return (
                     <span className = "details">Caregiver Aadhar: {aadhar}</span>
                    <span className = "details">Caregiver phone no.:{phone}</span>
                    <span className = "details">Payment ID: {payid}</span>
-                   <button className ={button1?"completed1":"notcompleted1"} onClick={updateclientdashboard} disabled={!button1}>{button1?"Completed":"Not Completed"}</button>
+                   <button className ={button1?"completed1":"notcompleted1"} onClick={updateclientdashboard} >{button1?"Completed":"Not Completed"}</button>
                    </div>
                    </div>
                       <h2 className = "currentbookinghead">Previous Bookings</h2>
