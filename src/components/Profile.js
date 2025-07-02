@@ -141,7 +141,7 @@ const Profile = ({ pass , client ,handlepayid}) => {
     navigate("/")
     try{
       await axios.post("https://semicolon-backend-p6v3.onrender.com/api/v1/user/gmail/send/caregiver",{
-        gmail:client.email,
+        gmail:email,
          message: `Booking Confirmed ✅
                    Client Name: ${client.fullName}
                    Client Email: ${client.email}
@@ -152,7 +152,7 @@ const Profile = ({ pass , client ,handlepayid}) => {
 
       })
      await axios.post("https://semicolon-backend-p6v3.onrender.com/api/v1/user/gmail/send/client",{
-        gmail:email,
+        gmail:client.email,
          message: `Booking Confirmed ✅
                    Caregiver Name: ${name}
                    Caregiver Email: ${email}
